@@ -21,21 +21,13 @@ public class Main {
         String pathToFile = "/home/bogdan/Programming/HomeWorkBigData/yellow_tripdata_2018-01.csv";
         try (FileReader fileReader = new FileReader(pathToFile)) { // this initialization will close Reader stream automatically
             // create CSVReader from OpenCSV lib
-
             CSVReader csvReader = new CSVReader(fileReader);
-            String[] header = csvReader.readNext();
 
-            CSVParserBuilder csvParserBuilder = new CSVParserBuilder();
+            String[] nextLine; // this array of string will be always redefined
 
-            // Every next string will be printed and add to ArrayList
-            String[] nextLine = csvReader.readNext(); // this array of string will be always redefined
-            System.out.println(Arrays.toString(nextLine));
-
-
-            List<InfoAboutOneAVGTIP> infoAboutOneAVGTIPSList = new ArrayList<>(1048576);
+            List<InfoAboutOneAVGTIP> infoAboutOneAVGTIPSList = new ArrayList<>(1048576); // initialCapacity equals to count of fields in .csv file
             while((nextLine = csvReader.readNext()) != null ){
-
-                InfoAboutOneAVGTIP infoAboutOneAVGTIP = new InfoAboutOneAVGTIP(nextLine[1], nextLine[4], nextLine[9], nextLine[13]);
+                InfoAboutOneAVGTIP infoAboutOneAVGTIP = new InfoAboutOneAVGTIP(nextLine[1], nextLine[4], nextLine[9], nextLine[13]);// nextLine[] - ints columns that task needed
                 infoAboutOneAVGTIPSList.add(infoAboutOneAVGTIP);
             }
             infoAboutOneAVGTIPSList.forEach(System.out::println);
