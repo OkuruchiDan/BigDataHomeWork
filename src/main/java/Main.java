@@ -32,8 +32,8 @@ public class Main {
             System.out.println(Arrays.toString(nextLine));
 
             int i = 0;
-            List<InfoAboutOneAVGTIP> infoAboutOneAVGTIPSList = new ArrayList<>(1500);
-            while((nextLine = csvReader.readNext()) != null && i <= 1500){
+            List<InfoAboutOneAVGTIP> infoAboutOneAVGTIPSList = new ArrayList<>(1048576);
+            while((nextLine = csvReader.readNext()) != null && i < 1048576){
                 i++;
                 InfoAboutOneAVGTIP infoAboutOneAVGTIP = new InfoAboutOneAVGTIP(nextLine[1], nextLine[4], nextLine[9], nextLine[13]);
                 infoAboutOneAVGTIPSList.add(infoAboutOneAVGTIP);
