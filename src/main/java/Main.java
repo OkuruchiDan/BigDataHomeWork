@@ -27,8 +27,6 @@ public class Main {
 
             CSVParserBuilder csvParserBuilder = new CSVParserBuilder();
 
-            // create ArrayList with 1500 capacity fore store all data
-            List<String[]> allData = new ArrayList<>(1500);
             // Every next string will be printed and add to ArrayList
             String[] nextLine = csvReader.readNext(); // this array of string will be always redefined
             System.out.println(Arrays.toString(nextLine));
