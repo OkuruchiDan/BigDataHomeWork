@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 @Data
 @NoArgsConstructor
 public class InfoAboutOneAVGTIP {
-    private int time_of_day;
+    private String time_of_day;
     private String trip_distance;
     private String payment_type;
     private String tip_amount;
@@ -25,11 +25,11 @@ public class InfoAboutOneAVGTIP {
                 '}';
     }
 
-    public int getTime_of_day() {
+    public String getTime_of_day() {
         return time_of_day;
     }
 
-    public void setTime_of_day(int time_of_day) {
+    public void setTime_of_day(String time_of_day) {
         this.time_of_day = time_of_day;
     }
 
@@ -58,13 +58,22 @@ public class InfoAboutOneAVGTIP {
     }
 
     public InfoAboutOneAVGTIP(String tpep_pickup_datetime, String trip_distance, String payment_type, String tip_amount) {
-        SimpleDateFormat formatPattern = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatPattern = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// creating new date format that .csv files using
 
         try {
             Date date = formatPattern.parse(tpep_pickup_datetime);
-            Calendar calendar = GregorianCalendar.getInstance();
+            Calendar calendar = GregorianCalendar.getInstance();// creating calendar for reading hours
             calendar.setTime(date);
-            this.time_of_day = calendar.get(Calendar.HOUR_OF_DAY);
+            int hours = calendar.get(Calendar.HOUR_OF_DAY);// reading hours
+            if(hours >=5 && hours <= 12){
+                this.time_of_day = "[Morning]";
+            } else if(hours > 12 && hours <= 17){
+                this.time_of_day = "[Afternoon]";
+            } else if(hours > 17 && hours <= 21){
+                this.time_of_day = "[Evening]";
+            } else {
+                this.time_of_day = "[Night]";
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
