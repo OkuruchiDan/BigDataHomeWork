@@ -31,10 +31,10 @@ public class Main {
             String[] nextLine = csvReader.readNext(); // this array of string will be always redefined
             System.out.println(Arrays.toString(nextLine));
 
-            int i = 0;
+
             List<InfoAboutOneAVGTIP> infoAboutOneAVGTIPSList = new ArrayList<>(1048576);
-            while((nextLine = csvReader.readNext()) != null && i < 1048576){
-                i++;
+            while((nextLine = csvReader.readNext()) != null ){
+
                 InfoAboutOneAVGTIP infoAboutOneAVGTIP = new InfoAboutOneAVGTIP(nextLine[1], nextLine[4], nextLine[9], nextLine[13]);
                 infoAboutOneAVGTIPSList.add(infoAboutOneAVGTIP);
             }
